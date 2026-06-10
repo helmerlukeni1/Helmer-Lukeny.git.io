@@ -7,6 +7,7 @@
 <head>
 <title>Meu Amigo JESUS </title> <!--Aqui fica o título do meu site.
 -->
+<link rel="stylesheet" href="Estilo.css">
 </head>
 
 <body>
@@ -14,11 +15,26 @@
   <h1>Este site tem como objectivo apresentar Cristo ao mundo</h1> <!--Aqui temos o nosso título 1 -->
   <h2>JESUS CRISTO é meu Senhor e Salvador</h2>
   <form>
-  <button type="submit" class="botao_estelizado"  >Entrar</button> <!-- Neste espaço criamos um botao estelizado de entrada-->
+ <div class="formulário">
+  <label for="nome">Nome:</label>
+<input type="text" id="nome" placeholder="Digita seu nome aqui">
+
+    
+    <div class="botões">
+    <button type="button">Salvar</button>
+<button type="button">Limpar</button>
+<input type="submit" class="entrar">
+        </div>
+        </div>
+    
+    
+ 
+  <!-- Neste espaço criamos um botao estelizado de entrada-->
   </form>
+  
   <p>Espero que adorem crianças. Foi feito com muito amor. Quem é JESUS? Assita o vídeo e veja o poder que ele tem.</p>
   <p>Quem é <b>Jesus Cristo</b> meninos? Acompanhe as fotos em bonecos e clica no vídeo</p>
-  
+ 
      <!-- Neste Espaçamento contém todas as imagens do meu projeto, com seus prefixos "img"-->
     <img src="Imagem/Jesus1.jpeg" width="100%">
     <img src="Imagem/Jesus2.jpeg" width="100%">
@@ -36,71 +52,15 @@
 <audio controls>
       <source src="Músicas/QUEM TEM JESUS  - Minha Vida é uma Viagem (OFICIAL)(M4A_128K).mp3" typer="audio/mpeg">
 </audio>
-  <p>Oração para Dormir</p>
-  <audio controls>
-    <source src=.mp3" typer="audio/mpeg">
-  </audio>
   
-  <style>
-  body{
-    background-color: #24dbdbd3;font:12pt Arial
-  }
-  button{
-    font-size:12pt;padding:30pix; margin:20px
-    ;padding:15px
-  background-color: yellow;
-      }
-  p{
-    text-align: center;
-  }   
-.botao-estilizado {
-  background-color: #4CAF50; /* Cor de fundo */
-  color: white; /* Cor do texto */
-  padding: 12px 30px; /* Espaçamento interno (altura e largura) */
-  font-size: 18px; /* Tamanho da fonte */
-  font-weight: bold; /* Deixa o texto em negrito */
-  border: none; /* Remove a borda padrão */
-  border-radius: 8px; /* Arredonda os cantos */
-  cursor: pointer; /* Muda o cursor para "mãozinha" ao passar por cima */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Efeito suave */
-}
+  <button onclick="alertHello()">Clica aqui meu Amor</button>
 
-/* Efeito ao passar o mouse por cima */
-.botao-estilizado:hover {
-  background-color: #45a049; /* Cor um pouco mais escura */
-  transform: translateY(-2px); /* Levanta o botão levemente */
-}
-
-/* Efeito ao clicar no botão */
-.botao-estilizado:active {
-  transform: translateY(0);
-  background-color: #3e8e41;
-}
-
-  .barra-contatos {
-    position: reverse;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #2431dbd3;
-    color: black;
-    text-align: center;
-    padding: 15px 0;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    z-index: 9999; /* Garante que a barra fique por cima de outros elementos */
-}
-  
-  
-  </style>
- 
- 
   <div class="barra-contatos">
     <div class="conteudo-contatos">
-        <p>Contatos 
-        email: helmerlukeni1@gmail.com
-         Telefone: 947158369</p>
-        
+        <p>Contatos</p>
+        <p>email: helmerlukeni1@gmail.com
+         </p>
+  
       <ul>
        <li> WhatsApp: 947158369 |</li>
         <li>Instagram: helmerlukeni</li>
@@ -111,6 +71,10 @@
         
     </div>
 </div>
+
+ <p id="texto"</p>
+   
+<script src="Script.js"></script>
   </body>
   
   </html>

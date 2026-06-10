@@ -1,0 +1,94 @@
+p{
+  text-align: center;
+}
+
+body{
+    background-color: #2295b9;font:12pt Arial
+  }
+  button{
+    font-size:12pt;padding:30pix; margin:20px
+    ;padding:15px
+  background-color: yellow;
+      }
+  p{
+    text-align: center;
+  }   
+.botao-estilizado {
+  background-color: #4CAF50; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  padding: 12px 30px; /* Espaçamento interno (altura e largura) */
+  font-size: 18px; /* Tamanho da fonte */
+  font-weight: bold; /* Deixa o texto em negrito */
+  border: none; /* Remove a borda padrão */
+  border-radius: 8px; /* Arredonda os cantos */
+  cursor: pointer; /* Muda o cursor para "mãozinha" ao passar por cima */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Efeito suave */
+  text-align: center;
+}
+
+/* Efeito ao passar o mouse por cima */
+.botao-estilizado:hover {
+  background-color: #45a049; /* Cor um pouco mais escura */
+  transform: translateY(-2px); /* Levanta o botão levemente */
+}
+
+/* Efeito ao clicar no botão */
+.botao-estilizado:active {
+  transform: translateY(0);
+  background-color: #3e8e41;
+}
+
+  .barra-contatos {
+    position: reverse;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: yellow;
+    color: black;
+    text-align: center;
+    padding: 15px 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    z-index: 9999; /* Garante que a barra fique por cima de outros elementos */
+}
+.formulario {
+  margin: 20px; /* espaço fora do bloco */
+  padding: 15px; /* espaço dentro do bloco */
+  display: flex;
+  flex-direction: column; /* um embaixo do outro */
+  gap: 15px; /* espaço entre cada linha */
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  width: 100%; /* ocupa toda largura no celular */
+  box-sizing: border-box;
+}
+
+.botoes {
+  display: flex;
+  gap: 10px; /* espaço entre os botões */
+  flex-wrap: wrap; /* se não couber, quebra linha */
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.entrar {
+  background-color: #28a745;
+  color: white;
+  flex: 1; /* botão Entrar fica maior */
+}
