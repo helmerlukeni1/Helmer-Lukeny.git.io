@@ -4,50 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=divice-width, initial-scale=1.0">
   
+  <link rel="stylesheet" href="Folha.css">
     <title>Dados com Js</title>
 </head>
+
 <body>
+
   <form>
+         <div class="container">
     <label for="nome"> Nome:</label>
     <input type="text" id="nome" name="nomd" required>
      
     <input type="submit" value="Salvar">
     <input type="reset" value="Limpar">
         <input type="button" value="Validar" onclick="alert("Validação em JavaScript!)</button>
-    
+        
+          </div>
   </form>
   
-  
-  
-  <!-- Neste CSS interno formamos um botão -->
-    <style>
-      body{ font:12pt Arial; } 
-      button{ font-size:12pt padding:30pix ;
-      }
-    </style>
     <h1>Trabalhando com dados v1.0 </h1>
 
-   
     <p id="texto"</p>
     
 
 <script>
-  var idade, eleitor
-  idade= 18
-  eleitor=(idade<18)? "Não Eleitor": "Sim, Eleitor";
-  alert("A resposta é:" + eleitor)
-  
-  
-  
-  // DECLARAMOS AS NOSSAS VARIAVEIS
-// let nome= prompt("Por favor digita seu nome:")
-// if(nome) {
-  // alert(" Olá," + nome + "! Seja bem-vindo.");
-// }
+function verificarParOuImpar(numero) {
+  if (numero % 2 === 0) {
+    return true; // É par
+  } else {
+    console.log("É ímpar"); // Fala se for ímpar
+    return false; // Também retorna false
+  }
+}
 
-var numero1=20
-var numero2= 50
-console.log (numero1 + numero2)
+// Como usar:
+let valor = Number(prompt("Digite um número:")); // prompt fica aqui fora
+let resultado = verificarParOuImpar(valor);
+
+console.log(resultado); // Vai mostrar true ou false
 
 
 
