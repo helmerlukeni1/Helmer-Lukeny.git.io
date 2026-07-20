@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Aluno - Júlio Verne</title>
+    
+    <!-- 1. LINK DO BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Só estilos extras que o Bootstrap não tem */
+        body {
+            transition: 0.3s;
+        }
+        .tema-escuro {
+            background-color: #212529;
+            color: #f8f9fa;
+        }
+        .tema-escuro .card, .tema-escuro .table {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+        .tema-escuro .form-control, .tema-escuro .form-select {
+            background-color: #495057;
+            color: #f8f9fa;
+            border-color: #6c757d;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container mt-4 mb-5">
+        <!-- CARD PRINCIPAL -->
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h1 class="h3">Portal do Aluno</h1>
+                <h2 class="h5">Colégio Júlio Verne</h2>
+            </div>
+            
+            <div class="card-body">
+                <!-- BOTÃO TEMA -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                    <button onclick="mudarTema()" class="btn btn-secondary">🌙 Mudar Tema</button>
+                </div>
+
+                <!-- FORMULÁRIO -->
+                <h3 class="h4 mb-3">Cadastrar Novo Aluno</h3>
+                <form id="formAluno">
+                    <div class="mb-3">
+                        <label class="form-label">Nome Completo</label>
+                        <input type="text" id="nome" class="form-control" placeholder="Digite o nome">
+                        <div class="text-danger small" id="erroNome"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Idade</label>
+                            <input type="number" id="idade" class="form-control" placeholder="Ex: 16">
+                            <div class="text-danger small" id="erroIdade"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Classe</label>
+                            <select id="classe" class="form-select">
+                                <option value="">Selecione a Classe</option>
+                                <option value="10ª">10ª Classe</option>
+                                <option value="11ª">11ª Classe</option>
+                                <option value="12ª">12ª Classe</option>
+                            </select>
+                            <div class="text-danger small" id="erroClasse"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Cadastrar Aluno</button>
+                </form>
+
+                <!-- CONTADOR -->
+                <div class="alert alert-info text-center mt-4">
+                    <strong>Total de Alunos: <span id="total">0</span></strong>
+                </div>
+
+                <!-- TABELA -->
+                <h3 class="h4 mt-4">Lista de Alunos</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="tabelaAlunos">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Idade</th>
+                                <th>Classe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Alunos aparecem aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card-footer text-muted text-center">
+                Desenvolvido por Helmer Lukeny - Portfólio 2026
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. SCRIPT DO BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // A MESMA LÓGICA DE ANTES. SÓ MUDOU O CSS
+        let alunos = JSON.parse(localStorage.getItem('alunosJV')) || [];
+
+        function mostrarAlunos() {
+            const tbody = document.querySelector('#tabelaAlunos tbody');
+            tbody.innerHTML = '';
+            alunos.forEach(aluno => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${aluno.nome}</td>
+                        <td>${aluno.idade}</td>
+                        <td>${aluno.classe}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('total').innerText = alunos.length;
+        }
+
+        document.getElementById('formAluno').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let nome = document.getElementById('nome').value;
+            let idade = document.getElementById('idade').value;
+            let classe = document.getElementById('classe').value;
+            let valido = true;
+
+            document.querySelectorAll('.text-danger').forEach(span => span.innerText = '');
+
+            if(nome === '') {
+                document.getElementById('erroNome').innerText = 'O nome é obrigatório';
+                valido = false;
+            }
+            if(idade === '') {
+                document.getElementById('erroIdade').innerText = 'A idade é obrigatória';
+                valido = false;
+            }
+            if(classe === '') {
+                document.getElementById('erroClasse').innerText = 'Selecione uma classe';
+                valido = false;
+            }
+
+            if(valido) {
+                alunos.push({ nome, idade, classe });
+                localStorage.setItem('alunosJV', JSON.stringify(alunos));
+                mostrarAlunos();
+                document.getElementById('formAluno').reset();
+            }
+        });
+
+        function mudarTema() {
+            document.body.classList.toggle('tema-escuro');
+        }
+
+        mostrarAlunos();
+    </script>
+
+</body>
+</html>
