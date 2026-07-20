@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão Crescente</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+
+        #meuBotao {
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            /* Transição suave para o aumento de tamanho */
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+  <div>
+    <button id="meuBotao" onclick="aumentarBotao()">10</button>
+</div>
+    <script>
+        let escala = 1; // Começa no tamanho original
+
+        function aumentarBotao() {
+            escala += 0.2; // Aumenta 20% do tamanho a cada clique
+            const botao = document.getElementById('meuBotao');
+            botao.style.transform = 'scale(' + escala + ')';
+        }
+    </script>
+    
+
+<a href="Validação de Formulário.html">Ir para o Formulário</a>
+<a href="Trabalhando com dados.html">Entrar</a>
+
+</body>
+</html>

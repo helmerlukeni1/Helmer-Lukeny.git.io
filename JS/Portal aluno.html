@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Aluno - Complexo Santa Beneditina Escolástica</title>
+    <style>
+        /* ESTILO BÁSICO */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .escuro {
+            background-color: #1e1e1e;
+            color: #f0f4f8;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .escuro .container {
+            background: #333;
+        }
+        h1 { text-align: center; color: #0056b3; }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover { background-color: #003d82; }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th { background-color: #0056b3; color: white; }
+        .erro { color: red; font-size: 12px; }
+        .contador {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Portal do Aluno</h1>
+        <h2 style="text-align:center;">Beneditina Escolástica</h2>
+        <p>Educar para a Liberdade</p>
+        
+        <button onclick="mudarTema()">🌙 Mudar Tema</button>
+        
+        <h3>Cadastrar Novo Aluno</h3>
+        <form id="formAluno">
+            <input type="text" id="nome" placeholder="Nome Completo">
+            <span class="erro" id="erroNome"></span>
+
+            <input type="number" id="idade" placeholder="Idade">
+            <span class="erro" id="erroIdade"></span>
+
+            <select id="classe">
+                <option value="">Selecione a Classe</option>
+                <option value="10ª">10ª Classe</option>
+                <option value="11ª">11ª Classe</option>
+                <option value="12ª">12ª Classe</option>
+            </select>
+            <span class="erro" id="erroClasse"></span>
+
+            <button type="submit">Cadastrar Aluno</button>
+        </form>
+
+        <div class="contador">Total de Alunos: <span id="total">0</span></div>
+
+        <h3>Lista de Alunos</h3>
+        <table id="tabelaAlunos">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Classe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os alunos vão aparecer aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // 1. TRABALHAR COM DADOS - PEGA DO localStorage OU CRIA LISTA VAZIA
+        let alunos = JSON.parse(localStorage.getItem('alunosJV')) || [];
+
+        // 2. FUNÇÃO PARA MOSTRAR ALUNOS NA TABELA
+        function mostrarAlunos() {
+            const tbody = document.querySelector('#tabelaAlunos tbody');
+            tbody.innerHTML = ''; // Limpa a tabela
+            alunos.forEach(aluno => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${aluno.nome}</td>
+                        <td>${aluno.idade}</td>
+                        <td>${aluno.classe}</td>
+                    </tr>
+                `;
+            });
+            // 3. AUMENTAR NÚMERO - ATUALIZA CONTADOR
+            document.getElementById('total').innerText = alunos.length;
+        }
+
+        // 4. VALIDAÇÃO DE FORMULÁRIO
+        document.getElementById('formAluno').addEventListener('submit', function(e) {
+            e.preventDefault(); // Não recarrega a página
+
+            let nome = document.getElementById('nome').value;
+            let idade = document.getElementById('idade').value;
+            let classe = document.getElementById('classe').value;
+            let valido = true;
+
+            // Limpa erros
+            document.querySelectorAll('.erro').forEach(span => span.innerText = '');
+
+            if(nome === '') {
+                document.getElementById('erroNome').innerText = 'O nome é obrigatório';
+                valido = false;
+            }
+            if(idade === '') {
+                document.getElementById('erroIdade').innerText = 'A idade é obrigatória';
+                valido = false;
+            }
+            if(classe === '') {
+                document.getElementById('erroClasse').innerText = 'Selecione uma classe';
+                valido = false;
+            }
+
+            if(valido) {
+                // Adiciona aluno na lista
+                alunos.push({ nome, idade, classe });
+                
+                // 1. SALVA NO NAVEGADOR
+                localStorage.setItem('alunosJV', JSON.stringify(alunos));
+                
+                // Atualiza a tela
+                mostrarAlunos();
+                
+                // Limpa o formulário
+                document.getElementById('formAluno').reset();
+            }
+        });
+
+        // 5. MUDANÇA DE COR - TEMA CLARO/ESCURO
+        function mudarTema() {
+            document.body.classList.toggle('escuro');
+        }
+
+        // Carrega os alunos quando abre a página
+        mostrarAlunos();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloquear envio de formulario</title>
+    </head>
+    <body
+    
+    <p1>Tipografia em CSS está relacionado com os espaçamentos que inpomos em uma página web.</p1> <!--No arquivo Css interno usei elementos que me ajudaram a organizar as palavras, como o line-height(serve para dar espaços entre as linhas), o letter-spacing(serve para dar espaços entre as letras) e o word-spacing(para dar espaços nas palavras), para além da margin e do font-size(para aumentar o conteúdo) -->
+    
+    <style>
+    body{
+      background: #45667889;
+      line-height: 1.5;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    }
+      h1{
+        font-size: 3rem;
+        margin: 5rem 0 3rem;
+      }
+      p{
+        font-size: 3rem;
+        margin: 0;
+        width: 50ch;
+      }
+    </style>
+    <!-- O que temos aqui abaixo é a estrutura normal para criação de um formulário -->
+      <form id="meuFormulario">
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" name="nome">
+  
+  <button type="submit">Enviar</button>
+  <p id="mensagemErro" style="color: red; display: none;">Por favor, digite seu nome.</p>
+</form>
+
+<!--No JavaScript abaixo fizemos o anulamento(bloqueio) do envio de um formulário, sempre que se digitar um nome no campo de nome do site -->
+<script>
+  const formulario = document.getElementById('meuFormulario');
+const campoNome = document.getElementById('nome');
+const mensagemErro = document.getElementById('mensagemErro');
+
+formulario.addEventListener('submit', function(event) {
+  // Remove espaços em branco extras e verifica se o campo está vazio
+  if (campoNome.value.trim() === '') {
+    // Bloqueia o envio do formulário
+    event.preventDefault();
+    
+    // Exibe a mensagem de erro
+    mensagemErro.style.display = 'block';
+  } else {
+    // Oculta a mensagem de erro caso o usuário tenha digitado algo
+    mensagemErro.style.display = 'none';
+  }
+});
+
+</script>
+    </body>
+    </html>
+    
